@@ -6,6 +6,8 @@ let playerPlay = document.querySelector('.playerPlay')
 let playerLabel = document.querySelector('.playerLabel')
 let ship = document.querySelector('.ship')
 let gameover = document.querySelector('.gameover')
+let gamestart = document.querySelector('.gamestart')
+let gamestop = document.querySelector('.gamestop')
 let audio = document.querySelector('.audio')
 let lasersound = document.querySelector('.lasersound')
 let crash = document.querySelector('.crash')
@@ -14,6 +16,8 @@ let toggleMusic = document.querySelector('.toggleMusic')
 let muteSpeaker = toggleMusic.querySelector('.muteSpeaker')
 let musicButton = toggleMusic.querySelector('.musicButton')
 let play = document.querySelector('.play')
+let playButton = document.querySelector('.playButton')
+let stopButton = document.querySelector('.stopButton')
 let earth = document.querySelector('.earthImg')
 let mars = document.querySelector('.marsImg')
 let space = document.querySelector('.spaceImg')
@@ -73,6 +77,7 @@ let removeLasers = () => {
 
 //Laser movement
 let laserMovement = laser => {
+  if (isStart) return;
   // laser.style.top = laser.offsetTop - window.innerHeight + 'px'
   laser.style.top = window.innerHeight + 'px'
   let laserInterval = setInterval(() => {
@@ -119,6 +124,7 @@ let createLaser = () => {
 
 //Lasershot function
 let laserShot = () => {
+  if (isStart) return;
   createLaser()
   removeLasers()
   laserSound()
@@ -196,24 +202,38 @@ let stopGame = () => {
 
 let isPaused = false; // Флаг паузы
 let asteroidTimers = []; // Массив для хранения таймеров астероидов
+let isStart = true
+ship.style.display = 'none'; 
+
+let startGame = () => {
+  isStart = !isStart;
+  if (!isStart) {
+    asteroidFunction();
+    gamestart.style.display = 'none';
+    addEventListeners();
+    ship.style.display = 'block';
+  }
+}
+
+playButton.addEventListener('click', e => {
+  startGame();
+});
 
 // Функция для установки паузы
 let togglePause = () => {
   isPaused = !isPaused; // Переключаем состояние паузы 
   if (isPaused) {
     // Останавливаем игру
-    gameover.style.display = 'flex';
+    gamestop.style.display = 'flex';
     removeEventListeners();
-    document.removeEventListener('click', laserShot)
     ship.style.display = 'none';  
   } else {
     // Возобновляем игру
     if (!checkAsteroids()) {
       asteroidFunction();  // Запускаем создание астероидов, если их нет на экране
     }
-    gameover.style.display = 'none';
+    gamestop.style.display = 'none';
     addEventListeners();
-    document.addEventListener('click', laserShot);
     ship.style.display = 'block';
   }
 }
@@ -226,7 +246,7 @@ document.addEventListener('keydown', event => {
 });
 
 // Обработчик нажатия кнопки Play
-play.addEventListener('click', () => {
+stopButton.addEventListener('click', () => {
   togglePause();
 });
 
@@ -254,13 +274,17 @@ let clearAllTimers = () => {
 
 let timeoutFunc = asteroid => {
   let asteroidPosition = asteroid.offsetTop;
+  if (isPaused) {
+    if (container.contains(asteroid)) {
+      container.removeChild(asteroid);
+  }}
   if (asteroidPosition <= -80) {
     if (container.contains(asteroid)) {
       container.removeChild(asteroid);
       star = document.querySelector('.star');
       removeStars();
 
-      if (gameRunning && !isPaused) {
+      if (gameRunning && !isPaused && !isStart) {
         asteroidFunction(); // Создаем новый астероид только если игра идет и нет паузы
       };
     };
@@ -290,7 +314,7 @@ let createAsteroid = () => {
 
 //Full asteroid functionality
 let asteroidFunction = () => {
-  if (!gameRunning || isPaused) return;
+  if (!gameRunning || isPaused || isStart) return;
 
   let asteroid = createAsteroid();
   container.append(asteroid);

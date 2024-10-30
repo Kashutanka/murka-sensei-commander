@@ -213,7 +213,7 @@ body {
   width: 30px;
   height: 30px;
   -webkit-transition: top 1.4s linear;
-  top: 130px;
+  top: 160px;
   transition: top 1.4s linear;
   transform: rotate(180deg);
   /* transform: rotate(90deg); */
@@ -332,7 +332,66 @@ body {
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
 }
+
 .gameover {
+  width: 80rem;
+  height: 60vh;
+  background-color: rgba(255, 255, 0, 0.151);
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: all 0.01s linear;
+  transition: all 0.01s linear;
+  z-index: 100;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  border: 20px solid yellow;
+  text-align: center;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.gamestart {
+  width: 80rem;
+  height: 60vh;
+  background-color: rgba(255, 255, 0, 0.151);
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: all 0.01s linear;
+  transition: all 0.01s linear;
+  z-index: 100;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  border: 20px solid yellow;
+  text-align: center;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.gamestop {
   width: 80rem;
   height: 60vh;
   background-color: rgba(255, 255, 0, 0.151);
@@ -378,6 +437,13 @@ body {
   text-decoration: underline;
 }
 
+.redtitle {
+  padding-top: 3rem;
+  color: #db1818;
+  font-size: 6rem;
+  text-decoration: underline;
+}
+
 .highscoreContainer {
   padding-top: 1rem;
   color: #db1818;
@@ -403,6 +469,29 @@ body {
   font-size: 10rem;
   cursor: pointer;
 }
+
+.playButton {
+  cursor: pointer;
+  position: absolute;
+  top: 60%;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: rgba(190, 60, 60, 0.822);
+  font-size: 10rem;
+  cursor: pointer;
+}
+
+.stopButton {
+  cursor: pointer;
+  position: absolute;
+  top: 60%;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: rgba(190, 60, 60, 0.822);
+  font-size: 10rem;
+  cursor: pointer;
+}
+
 .playerPlay {
   cursor: pointer;
   margin-top: 2rem;
@@ -414,6 +503,7 @@ body {
   cursor: pointer;
   font-size: 3rem;
 }
+
 .playerPlay:hover {
   transition: all 0.5s ease;
   color: rgba(255, 2, 2, 0.822);
@@ -430,6 +520,16 @@ body {
 }
 
 .gameover:hover .play {
+  color: rgba(238, 14, 14, 0.863);
+  font-size: 11rem;
+}
+
+.gamestop:hover .stopButton {
+  color: rgba(238, 14, 14, 0.863);
+  font-size: 11rem;
+}
+
+.gamestart:hover .playButton {
   color: rgba(238, 14, 14, 0.863);
   font-size: 11rem;
 }
