@@ -179,7 +179,7 @@ let setAsteroidShape = asteroid => {
   asteroid.style.width = `${asteroidShapeSize}rem`
 }
 
-let gameRunning = true, isPaused = false, isStart = true
+let isPaused = false, isStart = true
 ship.style.display = 'none';
 
 const gameoverFunc = () => {
@@ -192,7 +192,6 @@ const gameoverFunc = () => {
 const stopGame = () => {
   removeEventListeners();
   laserShot = 'none';
-  gameRunning = false;
 };
 
 const startGame = () => {
@@ -243,7 +242,7 @@ let timeoutFunc = asteroid => {
       container.removeChild(asteroid);
       star = document.querySelector('.star');
       removeStars();
-      if (gameRunning && !isPaused && !isStart) {
+      if ( !isPaused && !isStart) {
         asteroidFunction();
       }
     };
@@ -268,7 +267,7 @@ let createAsteroid = () => {
 
 //Full asteroid functionality
 let asteroidFunction = () => {
-  if (isStart || isPaused) return;
+  if (isStart || isPaused || !gameover) return;
   let asteroid = createAsteroid();
   container.append(asteroid);
   setAsteroidShape(asteroid);
