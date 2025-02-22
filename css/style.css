@@ -31,9 +31,12 @@ html {
 body {
   font-family: HalfTone, sans-serif;
   overflow: hidden;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
 }
 
 .videoContainer {
@@ -158,22 +161,27 @@ body {
     -webkit-transform: rotate(-1deg);
     transform: rotate(-1deg);
   }
+
   20% {
     -webkit-transform: rotate(1deg);
     transform: rotate(1deg);
   }
+
   40% {
     -webkit-transform: rotate(-1deg);
     transform: rotate(-1deg);
   }
+
   60% {
     -webkit-transform: rotate(1deg) scaleY(1.04);
     transform: rotate(1deg) scaleY(1.04);
   }
+
   80% {
     -webkit-transform: rotate(-2deg) scaleY(0.92);
     transform: rotate(-2deg) scaleY(0.92);
   }
+
   100% {
     -webkit-transform: rotate(1deg);
     transform: rotate(1deg);
@@ -185,22 +193,27 @@ body {
     -webkit-transform: rotate(-1deg);
     transform: rotate(-1deg);
   }
+
   20% {
     -webkit-transform: rotate(1deg);
     transform: rotate(1deg);
   }
+
   40% {
     -webkit-transform: rotate(-1deg);
     transform: rotate(-1deg);
   }
+
   60% {
     -webkit-transform: rotate(1deg) scaleY(1.04);
     transform: rotate(1deg) scaleY(1.04);
   }
+
   80% {
     -webkit-transform: rotate(-2deg) scaleY(0.92);
     transform: rotate(-2deg) scaleY(0.92);
   }
+
   100% {
     -webkit-transform: rotate(1deg);
     transform: rotate(1deg);
@@ -238,6 +251,7 @@ body {
   top: 20px;
   right: 58px;
 }
+
 .playerLabel {
   position: fixed;
   display: inline-block;
@@ -426,7 +440,16 @@ body {
   font-size: 2rem;
   text-decoration: underline;
 }
+
 .gameover:hover {
+  border: 20px solid rgb(255, 187, 0);
+}
+
+.gamestop:hover {
+  border: 20px solid rgb(255, 187, 0);
+}
+
+.gamestart:hover {
   border: 20px solid rgb(255, 187, 0);
 }
 
@@ -481,7 +504,7 @@ body {
   cursor: pointer;
 }
 
-.stopButton {
+.playGameButton {
   cursor: pointer;
   position: absolute;
   top: 60%;
@@ -489,6 +512,19 @@ body {
   transition: all 0.5s ease;
   color: rgba(190, 60, 60, 0.822);
   font-size: 10rem;
+  cursor: pointer;
+}
+
+
+.stopButton {
+  cursor: pointer;
+  position: absolute;
+  top: 8%;
+  right: 3%;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: rgba(190, 60, 60, 0.822);
+  font-size: 5rem;
   cursor: pointer;
 }
 
@@ -519,17 +555,22 @@ body {
   text-align: center;
 }
 
-.gameover:hover .play {
+.play:hover {
   color: rgba(238, 14, 14, 0.863);
   font-size: 11rem;
 }
 
-.gamestop:hover .stopButton {
+.stopButton:hover {
+  color: rgba(238, 14, 14, 0.863);
+  font-size: 6rem;
+}
+
+.playButton:hover {
   color: rgba(238, 14, 14, 0.863);
   font-size: 11rem;
 }
 
-.gamestart:hover .playButton {
+.playGameButton:hover {
   color: rgba(238, 14, 14, 0.863);
   font-size: 11rem;
 }
@@ -551,6 +592,7 @@ body {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -562,11 +604,13 @@ body {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
+
 /*# sourceMappingURL=style.css.map */
 @media screen and (max-width: 600px) {
   .playerLabel {
@@ -574,6 +618,7 @@ body {
     bottom: 10px;
     right: 10px;
   }
+
   .counter {
     display: inline-block;
     font-size: 5rem;
@@ -581,21 +626,25 @@ body {
     top: 10px;
     right: 40px;
   }
+
   .toggleMusic {
     position: fixed;
     bottom: 6px;
     left: 10px;
     cursor: pointer;
   }
+
   .musicButton {
     width: 3rem;
     height: 3rem;
   }
+
   .planet {
     height: 3rem;
     width: 3rem;
     margin-right: 0.6rem;
   }
+
   .backgroundContainer {
     position: fixed;
     display: inline-block;
@@ -606,12 +655,14 @@ body {
     left: 50px;
     cursor: pointer;
   }
+
   .lives {
     position: fixed;
     display: inline-block;
     left: 10px;
     top: 10px;
   }
+
   .gameover {
     width: 90%;
     height: 60vh;
@@ -624,15 +675,45 @@ body {
     transform: translate(-50%, -50%);
     display: none;
   }
+
+  .gamestart {
+    width: 90%;
+    height: 60vh;
+    background-color: rgba(255, 255, 0, 0.151);
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: flex;
+  }
+
+  .gamestop {
+    width: 90%;
+    height: 60vh;
+    background-color: rgba(255, 255, 0, 0.151);
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+
   .title {
     font-size: 3rem;
   }
+
   .highscoreContainer {
     font-size: 2rem;
   }
+
   .playerNameContainer {
     width: 90%;
   }
+
   .playerInput {
     width: 90%;
   }

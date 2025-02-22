@@ -105,6 +105,9 @@ let laserMovement = laser => {
       }
     }
   }, 10)
+  if (isPaused) {
+    clearInterval()
+  }
 }
 
 //Create laser and initial positioning
@@ -131,13 +134,9 @@ const setAsteroidPosition = asteroid => {
   let maxWidth = container.offsetWidth - asteroid.offsetWidth;
   let randomPosition = Math.floor(Math.random() * maxWidth);
   asteroid.style.left = randomPosition + 'px';
-  if (!isPaused) {
-    let time = setTimeout(_timer => { asteroid.style.bottom = window.innerHeight + 140 + 'px' }, 1);
-  }
-  if (isPaused) {
+  setInterval(() => {
     asteroid.style.bottom = window.innerHeight + 140 + 'px'
-    _timer => clearTimeout(time)
-  }
+  }, 1);
 };
 
 //Set asteroid shape
@@ -207,6 +206,7 @@ const startGame = () => {
 };
 
 const togglePause = () => {
+
   isPaused = !isPaused;
   gamestop.style.display = isPaused ? 'flex' : 'none';
   isPaused ? removeEventListeners() : (checkAsteroids() || asteroidFunction(), addEventListeners());
@@ -233,6 +233,11 @@ let removeStars = () => {
 
 let timeoutFunc = asteroid => {
   let asteroidPosition = asteroid.offsetTop;
+  if (isPaused) {
+    if (container.contains(asteroid)) {
+      asteroid.innerHeight
+    }
+  }
   if (asteroidPosition <= -80) {
     if (container.contains(asteroid)) {
       container.removeChild(asteroid);
@@ -240,20 +245,11 @@ let timeoutFunc = asteroid => {
       removeStars();
       if (gameRunning && !isPaused && !isStart) {
         asteroidFunction();
-
-        if (isPaused) {
-          asteroid.style.bottom = window.innerHeight + 140 + 'px'
-          _timer => clearTimeout(time)
-        }
-      } else _timer => clearInterval(_timer)
+      }
     };
-  } else if (isPaused) {
-    _timer => clearTimeout(time)
-    asteroid.style.bottom = asteroid.offsetHeight  + 140 + 'px'
-
   } else {
     setTimeout(() => timeoutFunc(asteroid), 1000);
-    let time = setTimeout(_timer => { asteroid.style.bottom = window.innerHeight + 140 + 'px' }, 1);
+
   }
 };
 
@@ -272,7 +268,7 @@ let createAsteroid = () => {
 
 //Full asteroid functionality
 let asteroidFunction = () => {
-  if (isStart) return;
+  if (isStart || isPaused) return;
   let asteroid = createAsteroid();
   container.append(asteroid);
   setAsteroidShape(asteroid);
